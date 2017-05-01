@@ -1,11 +1,9 @@
-const exec = require('child_process').exec;
+const monitor = require('./monitor');
+const AppEvents = require('./server-events').AppEvents;
+const SERVER_EVENTS = require('./server-events').SERVER_EVENTS;
 
-const processCheck = require('./outputParser').processCheck;
-
-exec('service nginx status', function(err, stdout, stderr) {
-  processCheck(stdout);
-});
-
-exec('service mysql status', function(err, stdout, stderr) {
-  processCheck(stdout);
-});
+module.exports = {
+  AppEvents: AppEvents,
+  monitor: monitor,
+  SERVER_EVENTS: SERVER_EVENTS
+};

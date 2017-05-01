@@ -1,11 +1,22 @@
-const processCheck = require('./outputParser').processCheck;
+const exec = require('child_process').exec;
 
-const cronTaskChecker = function (interval = 5000) {
+const parseOutput = require('./output-parser').parseOutput;
+const serviceStatusHandler = require('./event-handlers').serviceStatusHandler;
+
+const processCheck = function (serviceName, callback) {
+  exec(`service ${serviceName} status`, (err, stdout, stderr) => {
+    serviceStatusHandler(serviceName, parseOutput(stdout));
+  });
+};
+
+const cronServiceChecker = function (services, interval = 5000, callback) {
   setInterval(() => {
-    console.log("Nginx status: ", processCheck('nginx'); );
+    services.forEach((service) => {
+      processCheck(service);
+    });
   }, interval);
 };
 
-cronTaskChecker();
-
-// module.exports = cronTaskChecker;
+module.exports = {
+  cronServiceChecker: cronServiceChecker
+};
