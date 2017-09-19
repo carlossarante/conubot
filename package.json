@@ -9,6 +9,7 @@
   "author": "Carlos Sarante",
   "license": "ISC",
   "dependencies": {
-    "@slack/client": "^3.9.0"
+    "@slack/client": "^3.9.0",
+    "keymirror": "^0.1.1"
   }
 }

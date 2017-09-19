@@ -1,10 +1,11 @@
+const keyMirror = require('keyMirror');
 const EventEmitter = require('events');
 
-const SERVER_EVENTS = {
-  LOW_MEMORY: 'low_memory',
-  SERVICE_NOT_RUNNING: 'service_not_running',
-  SERVICE_RECOVERED: 'service_recovered'
-};
+const SERVER_EVENTS = keyMirror({
+  LOW_MEMORY
+  SERVICE_NOT_RUNNING
+  SERVICE_RECOVERED
+});
 
 const AppEvents = new EventEmitter();
 
